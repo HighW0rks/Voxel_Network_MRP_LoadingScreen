@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GMod Loading Screen</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #1e1e2f;
+      color: #ddd;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+    body {
+      display: block;
+    }
+
+    #container {
+      width: 95%;
+      max-width: 1100px;
+      padding: 20px;
+      background: #2f2f47;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+      margin: 20px auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #server-info, #status-info {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .status-line { margin: 4px 0; }
+
+    .category { margin-bottom: 30px; }
+
+    .category > h2 {
+      border-bottom: 2px solid #5c5ce6;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      color: #5c5ce6;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .staff-list {
+      width: 100%;
+      text-align: center;
+    }
+
+    .staff {
+      display: inline-block;
+      vertical-align: top;
+      background: #3c3c5c;
+      border-radius: 6px;
+      padding: 10px;
+      width: 220px;
+      margin: 6px;
+      text-align: center;
+      box-shadow: inset 0 0 5px #5c5ce6;
+    }
+
+    .staff-header {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    .staff img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #5c5ce6;
+      background-color: #222;
+    }
+
+    .staff-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: #eee;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .staff-role {
+      margin-top: 6px;
+      background: #5c5ce6;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 13px;
+      color: #fff;
+      display: inline-block;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Loading Server Staff</h1>
+
+    <div id="server-info">
+      <div id="serverName">Server: Loading...</div>
+      <div id="mapName">Map: Loading...</div>
+      <div id="gameMode">Game Mode: Loading...</div>
+      <div id="maxPlayers">Max Players: Loading...</div>
+    </div>
+
+    <div id="status-info">
+      <div class="status-line" id="status">Status: Waiting...</div>
+      <div class="status-line" id="filesTotal">Total Files to Download: 0</div>
+      <div class="status-line" id="filesNeeded">Files Left: 0</div>
+      <div class="status-line" id="downloadingFile">Downloading: None</div>
+    </div>
+
+    <div class="category" id="management">
+      <h2>Management</h2>
+      <div class="staff-list">
+        <div class="staff">
+          <div class="staff-header">
+            <img src="images/artivus.png" alt="Artivus">
+            <span class="staff-name">Artivus</span>
+          </div>
+          <div class="staff-role">Owner</div>
+        </div>
+        <div class="staff">
+          <div class="staff-header">
+            <img src="images/highworks.png" alt="HighWorks">
+            <span class="staff-name">HighWorks</span>
+          </div>
+          <div class="staff-role">Server Director</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category" id="administration">
+      <h2>Administration</h2>
+      <div class="staff-list">
+        <div class="staff">
+          <div class="staff-header">
+            <img src="images/nottuga.png" alt="NotTuga">
+            <span class="staff-name">NotTuga</span>
+          </div>
+          <div class="staff-role">Senior Admin</div>
+        </div>
+        <div class="staff">
+          <div class="staff-header">
+            <img src="images/billy.png" alt="Billy">
+            <span class="staff-name">Billy</span>
+          </div>
+          <div class="staff-role">Senior Admin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language) {
+      document.getElementById('serverName').innerHTML = 'Server: ' + (servername || 'Unknown');
+      document.getElementById('mapName').innerHTML = 'Map: ' + (mapname || 'Unknown');
+      document.getElementById('gameMode').innerHTML = 'Game Mode: ' + (gamemode || 'Unknown');
+      document.getElementById('maxPlayers').innerHTML = 'Max Players: ' + (maxplayers || '0');
+    }
+    function SetStatusChanged(status) {
+      document.getElementById('status').innerHTML = 'Status: ' + status;
+    }
+    function SetFilesTotal(total) {
+      document.getElementById('filesTotal').innerHTML = 'Total Files to Download: ' + total;
+    }
+    function SetFilesNeeded(needed) {
+      document.getElementById('filesNeeded').innerHTML = 'Files Left: ' + needed;
+    }
+    function DownloadingFile(fileName) {
+      document.getElementById('downloadingFile').innerHTML = 'Downloading: ' + fileName;
+    }
+  </script>
+</body>
+</html>
